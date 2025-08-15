@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 
 export async function generateStaticParams() {
   const paths = getAllPostIds();
-  return paths.map(path => ({
+  return paths.filter(path => path !== null).map(path => ({
     id: path.params.id
   }));
 }

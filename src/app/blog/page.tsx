@@ -17,7 +17,7 @@ export default async function Blog() {
       </div>
       
       <div className="space-y-12">
-        {allPostsData.map(({ id, date, title, content, tags }) => (
+        {allPostsData.filter(post => post !== null).map(({ id, date, title, content, tags }) => (
           <article key={id} className="border-b border-border pb-8 last:border-b-0">
             <div className="space-y-4">
               <time className="text-sm text-muted-foreground">

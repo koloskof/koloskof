@@ -90,11 +90,11 @@ export async function getSortedPostsData() {
       };
     } catch (error) {
       // Skip files that cause errors (like ENAMETOOLONG)
-      console.warn(`Skipping file ${fileName}:`, error.message);
+      console.warn(`Skipping file ${fileName}:`, error instanceof Error ? error.message : String(error));
       return null;
     }
   })); // Remove null entries
-  const filteredData = allPostsData.filter(Boolean);
+  const filteredData = allPostsData.filter((post): post is NonNullable<typeof post> => post !== null);
   
   // Sort posts by date
   return filteredData.sort((a, b) => {
@@ -197,7 +197,7 @@ export async function getPostData(id: string) {
       tags,
     };
   } catch (error) {
-    console.error(`Error reading post ${id}:`, error.message);
+    console.error(`Error reading post ${id}:`, error instanceof Error ? error.message : String(error));
     return null;
   }
 }
@@ -217,8 +217,8 @@ export function getAllPostIds() {
                 },
             };
         } catch (error) {
-            console.warn(`Skipping file ${fileName} in getAllPostIds:`, error.message);
+            console.warn(`Skipping file ${fileName} in getAllPostIds:`, error instanceof Error ? error.message : String(error));
             return null;
         }
-    }).filter(Boolean);
+    }).filter((item): item is NonNullable<typeof item> => item !== null);
 }
