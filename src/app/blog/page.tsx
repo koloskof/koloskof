@@ -38,7 +38,7 @@ export default async function Blog() {
                 </Link>
               )}
               <div className="prose prose-gray dark:prose-invert max-w-none prose-p:leading-7 prose-p:text-foreground prose-a:text-primary prose-a:underline prose-a:underline-offset-4">
-                <div className="whitespace-pre-line text-foreground">
+                <div className="whitespace-pre-line text-foreground break-words overflow-wrap-anywhere">
                   {content}
                 </div>
               </div>

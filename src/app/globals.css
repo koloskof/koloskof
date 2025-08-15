@@ -115,6 +115,11 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+  html, body {
+    overflow-x: hidden;
   }
   body {
     @apply bg-background text-foreground;
