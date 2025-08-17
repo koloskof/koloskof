@@ -1,55 +1,58 @@
-name: Deploy Next.js to Yandex Object Storage
+name: Build & Deploy to Yandex Object Storage
 
 on:
   push:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
 jobs:
-  build-and-upload:
+  deploy:
     runs-on: ubuntu-latest
 
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_S3_BUCKET: ${{ vars.AWS_S3_BUCKET }}
+      YC_S3_ENDPOINT: ${{ vars.YC_S3_ENDPOINT }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
+          cache: npm
 
-      - name: Install dependencies
+      - name: Install deps
         run: npm ci
 
-      - name: Build project (next build + export to out/)
-        run: npm run build
-
-      # --- Устанавливаем AWS CLI v2 (нужно для S3-совместимой загрузки в Object Storage)
-      - name: Install/Update AWS CLI v2
+      - name: Build & Export static
+        # В Next 15 корректный флаг: --outdir (а не -o)
         run: |
-          curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip -q awscliv2.zip
-          if command -v aws >/dev/null 2>&1; then
-            sudo ./aws/install --update
-          else
-            sudo ./aws/install
-          fi
+          npm run build
+          npx next export --outdir out
 
-      - name: Configure S3 creds
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.YANDEX }}
-        run: |
-          aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
-          aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
-          aws configure set default.region "ru-central1"
-          aws configure set default.s3.signature_version s3v4
+      # awscli уже предустановлен на runner'ах. Ничего ставить не нужно.
 
-      # Статика (CSS/JS/изображения) — с длинным кэшем
-      - name: Upload static assets (long cache)
+      - name: Upload static assets (immutable)
         run: |
-          aws s3 cp ./out s3://koloskov-rf/ --recursive --endpoint-url https://storage.yandexcloud.net --exclude "*.html" --cache-control "public, max-age=31536000, immutable" --acl public-read --only-show-errors
+          aws s3 sync ./out "s3://${AWS_S3_BUCKET}/" \
+            --endpoint-url "${YC_S3_ENDPOINT}" \
+            --exclude "*.html" \
+            --cache-control "public, max-age=31536000, immutable" \
+            --acl public-read \
+            --delete
 
-      # HTML — короткий кэш, чтобы правки видны сразу
-      - name: Upload HTML (short cache)
+      - name: Upload HTML (no-cache)
         run: |
-          find ./out -type f -name "*.html" -print0 | xargs -0 -I{} aws s3 cp "{}" "s3://koloskov-rf/{}" --endpoint-url https://storage.yandexcloud.net --cache-control "public, max-age=60" --acl public-read --only-show-errors
+          aws s3 sync ./out "s3://${AWS_S3_BUCKET}/" \
+            --endpoint-url "${YC_S3_ENDPOINT}" \
+            --exclude "*" \
+            --include "*.html" \
+            --cache-control "no-cache, no-store, must-revalidate" \
+            --acl public-read
