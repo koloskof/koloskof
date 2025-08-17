@@ -29,10 +29,8 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Build & Export static
-        run: |
-          npm run build
-          npm run export    # экспорт в папку out/
+      - name: Build static
+        run: npm run build
 
       - name: Install AWS CLI
         run: |
