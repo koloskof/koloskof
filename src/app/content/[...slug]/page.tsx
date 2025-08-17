@@ -139,7 +139,7 @@ export default async function ContentPage({ params }: PageProps) {
     '4-koncepcii-finansovyh-servisov': '4. Концепции финансовых сервисов'
   };
 
-  let filePath: string;
+  let filePath: string = '';
   if (slug.length === 1 && folderMappings[slug[0]]) {
     const structure = await getDirectoryStructure(slug[0]);
     
@@ -155,7 +155,41 @@ export default async function ContentPage({ params }: PageProps) {
       </div>
     );
   } else {
-    filePath = slug.join('/') + '.md';
+    // Попробуем разные варианты построения пути к файлу
+    const lastSegment = slug[slug.length - 1];
+    const basePath = slug.slice(0, -1);
+    
+    // Преобразуем slug обратно в оригинальные имена с пробелами
+    const originalSlug = slug.map(segment => 
+      segment.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+    );
+    
+    const possiblePaths = [
+      // Стандартный путь
+      slug.join('/') + '.md',
+      // Путь с оригинальными именами
+      originalSlug.join('/') + '.md',
+      // Файл в папке с тем же именем
+      originalSlug.join('/') + '/' + originalSlug[originalSlug.length - 1] + '.md',
+      // Файл в папке с тем же именем (kebab-case)
+      slug.join('/') + '/' + lastSegment + '.md',
+      // Смешанный вариант
+      basePath.join('/') + '/' + originalSlug[originalSlug.length - 1] + '/' + originalSlug[originalSlug.length - 1] + '.md'
+    ];
+    
+    let foundPath = null;
+    for (const testPath of possiblePaths) {
+      const testContent = await getMarkdownContent(testPath);
+      if (testContent) {
+        foundPath = testPath;
+        filePath = testPath;
+        break;
+      }
+    }
+    
+    if (!foundPath) {
+      filePath = slug.join('/') + '.md';
+    }
   }
   
   const content = await getMarkdownContent(filePath);
@@ -206,14 +240,27 @@ async function generateParamsForDirectory(dirPath: string, params: { slug: strin
     
     for (const entry of entries) {
       if (entry.isDirectory()) {
+        // Добавляем параметр для самой директории
+        const dirSlug = [...basePath, entry.name.toLowerCase().replace(/\s+/g, '-')];
+        params.push({ slug: dirSlug });
+        
+        // Рекурсивно обрабатываем поддиректории
         await generateParamsForDirectory(
           path.join(dirPath, entry.name), 
           params, 
           [...basePath, entry.name]
         );
       } else if (entry.name.endsWith('.md')) {
-        const slug = [...basePath, entry.name.replace(/\.md$/, '')];
-        params.push({ slug });
+        const fileName = entry.name.replace(/\.md$/, '');
+        
+        // Добавляем разные варианты путей для файлов
+        const fileSlug1 = [...basePath, fileName.toLowerCase().replace(/\s+/g, '-')];
+        const fileSlug2 = [...basePath.map(p => p.toLowerCase().replace(/\s+/g, '-')), fileName.toLowerCase().replace(/\s+/g, '-')];
+        
+        params.push({ slug: fileSlug1 });
+        if (JSON.stringify(fileSlug1) !== JSON.stringify(fileSlug2)) {
+          params.push({ slug: fileSlug2 });
+        }
       }
     }
   } catch (error) {
