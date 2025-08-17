@@ -32,10 +32,7 @@ jobs:
         run: npm ci
 
       - name: Build & Export static
-        # В Next 15 корректный флаг: --outdir (а не -o)
-        run: |
-          npm run build
-          npx next export --outdir out
+        run: npm run build
 
       # awscli уже предустановлен на runner'ах. Ничего ставить не нужно.
 
