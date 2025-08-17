@@ -4,7 +4,7 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Колосков | Блог о финтехе",
+  title: "КОЛОСКОВ.РФ: Платформизация экономики",
   description: "Размышления о финтехе, банкинге и цифровых технологиях",
 };
 
