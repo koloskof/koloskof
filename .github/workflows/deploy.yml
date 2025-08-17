@@ -1,0 +1,51 @@
+name: Deploy Next.js to Yandex Object Storage
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project (next build + export to out/)
+        run: npm run build
+
+      # --- Устанавливаем AWS CLI v2 (нужно для S3-совместимой загрузки в Object Storage)
+      - name: Install AWS CLI v2
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip -q awscliv2.zip
+          sudo ./aws/install
+
+      - name: Configure S3 creds
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.YANDEX }}
+        run: |
+          aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
+          aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
+          aws configure set default.region "ru-central1"
+          aws configure set default.s3.signature_version s3v4
+
+      # Статика (CSS/JS/изображения) — с длинным кэшем
+      - name: Upload static assets (long cache)
+        run: |
+          aws s3 cp ./out s3://koloskov-rf/ --recursive --endpoint-url https://storage.yandexcloud.net --exclude "*.html" --cache-control "public, max-age=31536000, immutable" --acl public-read --only-show-errors
+
+      # HTML — короткий кэш, чтобы правки видны сразу
+      - name: Upload HTML (short cache)
+        run: |
+          find ./out -type f -name "*.html" -print0 | xargs -0 -I{} aws s3 cp "{}" "s3://koloskov-rf/{}" --endpoint-url https://storage.yandexcloud.net --cache-control "public, max-age=60" --acl public-read --only-show-errors

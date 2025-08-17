@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev": "next dev --turbo",
+    "build": "next build && next export -o out",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "echo \"(no tests)\" && exit 0"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
