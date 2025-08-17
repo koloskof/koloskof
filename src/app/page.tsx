@@ -38,7 +38,7 @@ export default function Home() {
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold">
-              <Link href="/blog" className="text-blue-600 hover:underline">
+              <Link href="/content/2-specifikaciya-po-produktovoj-razrabotke" className="text-blue-600 hover:underline">
                 Спецификация по продуктовой разработке
               </Link>
             </h2>
@@ -49,7 +49,7 @@ export default function Home() {
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold">
-              <Link href="/blog" className="text-blue-600 hover:underline">
+              <Link href="/content/3-modulnaya-finansovaya-platforma" className="text-blue-600 hover:underline">
                 Модульная финансовая платформа
               </Link>
             </h2>
@@ -60,7 +60,7 @@ export default function Home() {
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold">
-              <Link href="/blog" className="text-blue-600 hover:underline">
+              <Link href="/content/4-koncepcii-finansovyh-servisov" className="text-blue-600 hover:underline">
                 Концепции финансовых сервисов
               </Link>
             </h2>
@@ -69,28 +69,9 @@ export default function Home() {
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-2xl font-bold">
-              <Link href="/blog" className="text-blue-600 hover:underline">
-                Friends
-              </Link>
-            </h2>
-            <p className="text-lg leading-relaxed">
-              Пополняющийся список экспертов и менеджеров в области финтеха и цифровых сервисов с фокусом на Дискавери функции: продукт и дизайн.
-            </p>
-          </section>
         </div>
 
         <div className="space-y-6">
-          <div className="flex gap-4 items-center flex-col sm:flex-row">
-            <Link 
-              href="/content" 
-              className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            >
-              Перейти к контенту
-            </Link>
-          </div>
-          
           <p className="text-lg">
             Сообщество для открытого индустриального диалога{" "}
             <a href="https://t.me/bankfloorbelowclub" className="text-blue-600 hover:underline">

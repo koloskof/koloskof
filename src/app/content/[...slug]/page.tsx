@@ -12,7 +12,7 @@ interface PageProps {
 
 async function getMarkdownContent(filePath: string) {
   try {
-    const fullPath = path.join(process.cwd(), 'src', ...filePath.split('/'));
+    const fullPath = path.join(process.cwd(), 'src', filePath);
     const fileContents = await fs.readFile(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
     
@@ -38,14 +38,15 @@ interface DirectoryItem {
 
 async function getDirectoryStructure(dirPath: string): Promise<DirectoryItem[]> {
   try {
-    const fullPath = path.join(process.cwd(), 'src', ...dirPath.split('/'));
+    const fullPath = path.join(process.cwd(), 'src', dirPath);
     const entries = await fs.readdir(fullPath, { withFileTypes: true });
     
     const structure = [];
     
     for (const entry of entries) {
       if (entry.isDirectory()) {
-        const subStructure = await getDirectoryStructure(path.join(dirPath, entry.name));
+        const subPath = path.join(dirPath, entry.name);
+        const subStructure = await getDirectoryStructure(subPath);
         if (subStructure.length > 0) {
           structure.push({
             name: entry.name,
@@ -80,7 +81,7 @@ function renderDirectoryStructure(structure: DirectoryItem[], currentPath: strin
             </div>
           ) : (
             <Link 
-              href={`/content/${item.path?.replace(/\.md$/, '').replace(/\\/g, '/')}`}
+              href={`/content/${item.path?.replace(/\.md$/, '').replace(/\\/g, '/').replace(/\s+/g, '-').toLowerCase()}`}
               className="text-blue-600 hover:underline block"
             >
               {item.name.replace(/\.md$/, '')}
@@ -96,17 +97,24 @@ export default async function ContentPage({ params }: PageProps) {
   const { slug } = await params;
   
   if (!slug || slug.length === 0) {
-    const folders = ['2', '3', '4', '5', '6', '7'];
+    const folders = ['2-specifikaciya-po-produktovoj-razrabotke', '3-modulnaya-finansovaya-platforma', '4-koncepcii-finansovyh-servisov', '5-kniga-kontaktov', '6-finteh-otchet', '7-kartina-mira'];
+    const folderTitles = {
+      '2-specifikaciya-po-produktovoj-razrabotke': '2. Спецификация по продуктовой разработке',
+      '3-modulnaya-finansovaya-platforma': '3. Модульная финансовая платформа',
+      '4-koncepcii-finansovyh-servisov': '4. Концепции финансовых сервисов',
+      '5-kniga-kontaktov': '5. Книга контактов',
+      '6-finteh-otchet': '6. Финтех отчет',
+      '7-kartina-mira': '7. Картина мира'
+    };
+    
     const structures = await Promise.all(
       folders.map(async (folder) => {
-        const folderName = await fs.readdir(path.join(process.cwd(), 'src'))
-          .then(entries => entries.find(entry => entry.startsWith(folder + '.')));
-        
-        if (folderName) {
-          const structure = await getDirectoryStructure(folderName);
-          return { folderName, structure };
+        try {
+          const structure = await getDirectoryStructure(folder);
+          return { folderName: folder, folderTitle: folderTitles[folder as keyof typeof folderTitles], structure };
+        } catch {
+          return null;
         }
-        return null;
       })
     );
     
@@ -116,7 +124,7 @@ export default async function ContentPage({ params }: PageProps) {
         <div className="space-y-8">
           {structures.filter(Boolean).map((folder, index) => (
             <div key={index}>
-              <h2 className="text-2xl font-bold mb-4">{folder!.folderName}</h2>
+              <h2 className="text-2xl font-bold mb-4">{folder!.folderTitle}</h2>
               {renderDirectoryStructure(folder!.structure)}
             </div>
           ))}
@@ -125,7 +133,31 @@ export default async function ContentPage({ params }: PageProps) {
     );
   }
 
-  const filePath = slug.join('/') + '.md';
+  const folderMappings: Record<string, string> = {
+    '2-specifikaciya-po-produktovoj-razrabotke': '2. Спецификация по продуктовой разработке',
+    '3-modulnaya-finansovaya-platforma': '3. Модульная финансовая платформа',
+    '4-koncepcii-finansovyh-servisov': '4. Концепции финансовых сервисов'
+  };
+
+  let filePath: string;
+  if (slug.length === 1 && folderMappings[slug[0]]) {
+    const structure = await getDirectoryStructure(slug[0]);
+    
+    return (
+      <div className="max-w-4xl mx-auto p-8">
+        <div className="mb-6">
+          <Link href="/" className="text-blue-600 hover:underline">
+            ← Назад на главную
+          </Link>
+        </div>
+        <h1 className="text-3xl font-bold mb-8">{folderMappings[slug[0]]}</h1>
+        {renderDirectoryStructure(structure)}
+      </div>
+    );
+  } else {
+    filePath = slug.join('/') + '.md';
+  }
+  
   const content = await getMarkdownContent(filePath);
   
   if (!content) {
@@ -135,8 +167,8 @@ export default async function ContentPage({ params }: PageProps) {
   return (
     <div className="max-w-4xl mx-auto p-8">
       <div className="mb-6">
-        <Link href="/content" className="text-blue-600 hover:underline">
-          ← Назад к содержанию
+        <Link href="/" className="text-blue-600 hover:underline">
+          ← Назад на главную
         </Link>
       </div>
       
@@ -150,16 +182,15 @@ export default async function ContentPage({ params }: PageProps) {
 export async function generateStaticParams() {
   const params: { slug: string[] }[] = [];
   
-  const folders = ['2', '3', '4', '5', '6', '7'];
+  const folders = ['2-specifikaciya-po-produktovoj-razrabotke', '3-modulnaya-finansovaya-platforma', '4-koncepcii-finansovyh-servisov'];
   
   for (const folder of folders) {
     try {
-      const folderName = await fs.readdir(path.join(process.cwd(), 'src'))
-        .then(entries => entries.find(entry => entry.startsWith(folder + '.')));
+      const fullPath = path.join(process.cwd(), 'src', folder);
+      await fs.access(fullPath);
       
-      if (folderName) {
-        await generateParamsForDirectory(folderName, params);
-      }
+      params.push({ slug: [folder] });
+      await generateParamsForDirectory(folder, params, [folder]);
     } catch (error) {
       console.error(`Error processing folder ${folder}:`, error);
     }
@@ -168,7 +199,7 @@ export async function generateStaticParams() {
   return params;
 }
 
-async function generateParamsForDirectory(dirPath: string, params: { slug: string[] }[], currentPath: string[] = []) {
+async function generateParamsForDirectory(dirPath: string, params: { slug: string[] }[], basePath: string[] = []) {
   try {
     const fullPath = path.join(process.cwd(), 'src', dirPath);
     const entries = await fs.readdir(fullPath, { withFileTypes: true });
@@ -178,10 +209,10 @@ async function generateParamsForDirectory(dirPath: string, params: { slug: strin
         await generateParamsForDirectory(
           path.join(dirPath, entry.name), 
           params, 
-          [...currentPath, entry.name]
+          [...basePath, entry.name]
         );
       } else if (entry.name.endsWith('.md')) {
-        const slug = [...dirPath.split(path.sep), ...currentPath, entry.name.replace(/\.md$/, '')];
+        const slug = [...basePath, entry.name.replace(/\.md$/, '')];
         params.push({ slug });
       }
     }
