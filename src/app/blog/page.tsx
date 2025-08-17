@@ -2,6 +2,7 @@ import Link from "next/link";
 import { promises as fs } from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { getBlogTitle } from "@/lib/blog-titles";
 
 interface BlogPost {
   slug: string;
@@ -24,7 +25,7 @@ async function getBlogPosts(): Promise<BlogPost[]> {
         const { data, content } = matter(fileContent);
         
         const slug = file.replace('.md', '');
-        const title = data.title || slug.replace(/-/g, ' ').replace(/^\w/, c => c.toUpperCase());
+        const title = data.title || getBlogTitle(slug);
         const excerpt = content.slice(0, 200) + (content.length > 200 ? '...' : '');
         
         return {
@@ -72,18 +73,28 @@ export default async function BlogPage() {
               {posts.map((post) => (
                 <article key={post.slug} className="border border-border rounded-lg p-6 hover:bg-muted/50 transition-colors">
                   <div className="space-y-3">
-                    <h2 className="text-xl font-semibold">
-                      <Link 
-                        href={`/blog/${post.slug}`} 
-                        className="text-foreground hover:text-blue-600 transition-colors"
-                      >
-                        {post.title}
-                      </Link>
-                    </h2>
+                    {post.title && (
+                      <h2 className="text-xl font-semibold">
+                        <Link 
+                          href={`/blog/${post.slug}`} 
+                          className="text-foreground hover:text-blue-600 transition-colors"
+                        >
+                          {post.title}
+                        </Link>
+                      </h2>
+                    )}
                     
-                    <p className="text-muted-foreground leading-relaxed">
-                      {post.excerpt}
-                    </p>
+                    {post.title ? (
+                      <p className="text-muted-foreground leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                    ) : (
+                      <Link href={`/blog/${post.slug}`} className="block">
+                        <p className="text-muted-foreground leading-relaxed hover:text-foreground transition-colors">
+                          {post.excerpt}
+                        </p>
+                      </Link>
+                    )}
                     
                     <div className="pt-2">
                       <Link 

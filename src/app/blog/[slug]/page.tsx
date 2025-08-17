@@ -4,6 +4,7 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import { getBlogTitle } from "@/lib/blog-titles";
 import { notFound } from "next/navigation";
 
 interface BlogPostProps {
@@ -28,7 +29,7 @@ async function getBlogPost(slug: string) {
     
     return {
       slug,
-      title: data.title || slug.replace(/-/g, ' ').replace(/^\w/, c => c.toUpperCase()),
+      title: data.title || getBlogTitle(slug),
       content: contentHtml,
       date: data.date || null,
       author: data.author || null,
