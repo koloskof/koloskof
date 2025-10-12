@@ -1,0 +1,5 @@
+# Tinkoff Black
+
+App Store: https://apps.apple.com/ru/app/%D1%82%D0%B8%D0%BD%D1%8C%D0%BA%D0%BE%D1%84%D1%84-%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%B1%D0%B0%D0%BD%D0%BA/id455652438
+Play Market: https://play.google.com/store/apps/details?id=com.idamob.tinkoff.android&hl=ru&gl=US
+Сайт: https://www.tinkoff.ru/cards/debit-cards/tinkoff-black/?dco_ic=c2bfa47f-38b8-11ec-8000-000075cc9a08&utm_source=google&utm_medium=ctx.cpc&utm_campaign=debit.black&utm_term=%7Cgclid%7CCj0KCQjwt-6LBhDlARIsAIPRQcIHsabKYHZG8zqudaM4vOdkTR_XXG1hYEVXaaQnJMzFCcMYvuSiD4MaAv9WEALw_wcB%7C%D1%82%D0%B8%D0%BD%D1%8C%D0%BA%D0%BE%D1%84%D1%84+%D0%B1%D0%BB%D1%8D%D0%BA&utm_content=k50id%7Caud-781080148697%3Akwd-494802936232%7Ccid%7C14977396476%7Caid%7C553787283967%7Cgid%7C133837726972%7Cpos%7C%7Csrctype%7Cg%7Csrc%7C%7Cdvc%7Cc%7Cregionid%7C9047067%7Cmt%7Ce%7C&gclid=Cj0KCQjwt-6LBhDlARIsAIPRQcIHsabKYHZG8zqudaM4vOdkTR_XXG1hYEVXaaQnJMzFCcMYvuSiD4MaAv9WEALw_wcB

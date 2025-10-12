@@ -1,0 +1,62 @@
+name: Deploy React to Yandex Object Storage
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "package.json"
+      - "package-lock.json"
+      - "yarn.lock"
+      - "pnpm-lock.yaml"
+      - "public/**"
+      - "src/**"
+      - ".github/workflows/deploy-static.yml"
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    env:
+      # фиксированные параметры
+      ENDPOINT: https://storage.yandexcloud.net
+      BUCKET: koloskov-rf
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build
+        env:
+          NODE_ENV: production
+        run: npm run build   # ожидается вывод в ./build/
+
+      - name: Install AWS CLI
+        run: sudo apt-get update && sudo apt-get install -y awscli
+
+      - name: Configure S3 creds
+        run: |
+          aws configure set aws_access_key_id "${{ secrets.ID }}"
+          aws configure set aws_secret_access_key "${{ secrets.YANDEX }}"
+          aws configure set default.region ru-central1
+
+      # всё, кроме index.html — длинный кэш (для статики)
+      - name: Upload static (long cache)
+        run: |
+          aws s3 sync build/ "s3://$BUCKET" \
+            --endpoint-url "$ENDPOINT" \
+            --delete \
+            --exclude "index.html" \
+            --cache-control "public,max-age=31536000,immutable"
+
+      # index.html — без кэша, чтобы изменения были видны сразу
+      - name: Upload index.html (short cache)
+        run: |
+          aws s3 cp build/index.html "s3://$BUCKET/index.html" \
+            --endpoint-url "$ENDPOINT" \
+            --cache-control "no-cache"

@@ -1,0 +1,23 @@
+# Площади
+
+[Button](%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%B8%20f31238b15eba4de892bafe1733daff1f/Button%203919b4d8bfc14046970a823c06c44ba5.csv)
+
+[Checkbo](%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%B8%20f31238b15eba4de892bafe1733daff1f/Checkbo%20ded0331e9b494766b69abf20b2b8afd8.csv)
+
+[Textinput](%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%B8%20f31238b15eba4de892bafe1733daff1f/Textinput%20846c4d0c5a8f4c40b1fe2548a19af6ac.csv)
+
+[Progressbar](%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%B8%20f31238b15eba4de892bafe1733daff1f/Progressbar%205080b91358224f05a54d682764c9fe74.csv)
+
+[Radio](%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%B8%20f31238b15eba4de892bafe1733daff1f/Radio%204b22fed6c8cf4e82b54f4a00263f9458.csv)
+
+[Textarea](%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%B8%20f31238b15eba4de892bafe1733daff1f/Textarea%20749d892bdefe4e6ba46bf533fbe1af5e.csv)
+
+[Tumbler](%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%B8%20f31238b15eba4de892bafe1733daff1f/Tumbler%20cdd9a06caf7643f8b37b119182e89062.csv)
+
+[Spiner](%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%B8%20f31238b15eba4de892bafe1733daff1f/Spiner%20db67eff187d74aefa72b7b5c26e24efd.csv)
+
+[Slider](%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%B8%20f31238b15eba4de892bafe1733daff1f/Slider%20a1f8800a0e0c48058be42ce7d4ca7119.csv)
+
+[Messagebox](%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%B8%20f31238b15eba4de892bafe1733daff1f/Messagebox%20be1a1d9215ba40ca9b175d66aaee9476.csv)
+
+[Tooltip](%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%B8%20f31238b15eba4de892bafe1733daff1f/Tooltip%2071217662860a435cac75c9a195f4a93b.csv)
