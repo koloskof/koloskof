@@ -1,0 +1,7 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/content/layout,_N_T_/content/[...slug]/layout,_N_T_/content/[...slug]/page,_N_T_/content/2-specifikaciya-po-produktovoj-razrabotke/dizayn-produkta/karkas/setka/modifikator-39c19905d3104190aee66ae9307ff7b7/l-row-c76cb381eb6642049bdf464d989dfb29/"
+  }
+}

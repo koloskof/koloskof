@@ -1,0 +1,124 @@
+1:"$Sreact.fragment"
+2:I[7555,[],""]
+3:I[1295,[],""]
+5:I[9665,[],"OutletBoundary"]
+7:I[4911,[],"AsyncMetadataOutlet"]
+9:I[9665,[],"ViewportBoundary"]
+b:I[9665,[],"MetadataBoundary"]
+c:"$Sreact.suspense"
+e:I[8393,[],""]
+:HL["/_next/static/media/028c0d39d2e8f589-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5b01f339abf2f1a5.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/e27041d1401e0af5.css","style"]
+0:{"P":null,"b":"p4sgdc3utZK-wUSIC-oba","p":"","c":["","content","2-specifikaciya-po-produktovoj-razrabotke","analitika-produkta","sql2","sql-obnovlenie-dobavlenie-i-udalenie-dannyh-a07c20acc4c841dfa574b8f636021e4e",""],"i":false,"f":[[["",{"children":["content",{"children":[["slug","2-specifikaciya-po-produktovoj-razrabotke/analitika-produkta/sql2/sql-obnovlenie-dobavlenie-i-udalenie-dannyh-a07c20acc4c841dfa574b8f636021e4e","c"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/e27041d1401e0af5.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"ru","className":"dark h-full","children":["$","body",null,{"className":"__variable_fb8f2c __variable_f910ec antialiased h-full bg-background flex flex-col","children":[["$","div",null,{"className":"flex-1","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"border-t border-border mt-auto","children":["$","div",null,{"className":"container mx-auto px-4 py-8 max-w-4xl","children":["$","div",null,{"className":"text-center text-sm text-muted-foreground","children":["$","p",null,{"children":"КОЛОСКОВ™"}]}]}]}]]}]}]]}],{"children":["content",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","2-specifikaciya-po-produktovoj-razrabotke/analitika-produkta/sql2/sql-obnovlenie-dobavlenie-i-udalenie-dannyh-a07c20acc4c841dfa574b8f636021e4e","c"],["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L4",null,["$","$L5",null,{"children":["$L6",["$","$L7",null,{"promise":"$@8"}]]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$L9",null,{"children":"$La"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Lb",null,{"children":["$","div",null,{"hidden":true,"children":["$","$c",null,{"fallback":null,"children":"$Ld"}]}]}]]}],false]],"m":"$undefined","G":["$e",[]],"s":false,"S":true}
+a:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+6:null
+f:I[8175,[],"IconMark"]
+8:{"metadata":[["$","title","0",{"children":"КОЛОСКОВ.РФ: Платформизация экономики"}],["$","meta","1",{"name":"description","content":"Размышления о финтехе, банкинге и цифровых технологиях"}],["$","link","2",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"16x16"}],["$","$Lf","3",{}]],"error":null,"digest":"$undefined"}
+d:"$8:metadata"
+10:I[6874,["874","static/chunks/874-437a265a67d6cfee.js","734","static/chunks/app/content/%5B...slug%5D/page-7b3ae3552f08c16e.js"],""]
+11:Tbae,<h1>SQL: Обновление, добавление и удаление данных</h1>
+<hr>
+<h3>Добавление данных <code>INSERT</code></h3>
+<p><strong>По положению столбцов в таблице</strong></p>
+<p>Структура запроса:</p>
+<pre><code class="language-sql">INSERT INTO table
+
+VALUES (value1,…, valueN)
+
+</code></pre>
+<p>Пример:</p>
+<pre><code class="language-sql">INSERT INTO reviews 
+
+VALUES (625722631, 4407, '2020-06-19',
+393348, 'Christian')
+</code></pre>
+<p><strong>По названию столбцов в таблице</strong></p>
+<p>Структура запроса:</p>
+<pre><code class="language-sql">INSERT INTO table 
+
+(column1, column2, …, columnN) 
+
+VALUES (value1, value2, …, valueN)
+
+</code></pre>
+<p>Пример:</p>
+<pre><code class="language-sql">INSERT INTO reviews 
+
+(id, listing_id, date, 
+reviewer_id, reviewer_name)
+
+VALUES (625722633, 4407, 
+'2020-06-19', 393348, 'Christian')
+</code></pre>
+<p><strong>Из одной таблицы в другую</strong></p>
+<p>Структура запроса:</p>
+<pre><code class="language-sql">INSERT INTO table 
+
+SELECT ...
+
+</code></pre>
+<p>Пример:</p>
+<pre><code class="language-sql">INSERT INTO reviews 
+
+SELECT 
+  id, 
+	listing_id, 
+	date, 
+	reviewer_id, 
+	reviewer_name
+FROM reviews 
+WHERE id = 625722630
+</code></pre>
+<h3>Обновление данных <code>UPDATE</code></h3>
+<p><strong>Замена данных</strong></p>
+<p>Структура запроса:</p>
+<pre><code class="language-sql">UPDATE table
+SET column = ...
+</code></pre>
+<p>Пример:</p>
+<pre><code class="language-sql">UPDATE reviews
+SET reviewer_name = 'John Doe'
+</code></pre>
+<p><strong>Замена с условием</strong></p>
+<p>Структура запроса:</p>
+<pre><code class="language-sql">UPDATE table
+SET column_1 = ... , 
+column_n = …
+WHERE ...
+</code></pre>
+<p>Пример:</p>
+<pre><code class="language-sql">UPDATE hosts
+SET about = 'No description', 
+is_super_host = 'f'
+WHERE about = ' '
+</code></pre>
+<p><strong>Увеличение</strong></p>
+<p>Структура запроса:</p>
+<pre><code class="language-sql">UPDATE table
+SET column_1  = column_1 * 2
+WHERE ...
+</code></pre>
+<p>Пример:</p>
+<pre><code class="language-sql">UPDATE listings
+SET price = price * 2 
+WHERE room_type = 'Hotel room'
+</code></pre>
+<h3>Удаление данных <code>DELETE</code></h3>
+<p><strong>Удаление строк</strong></p>
+<p>Структура запроса:</p>
+<pre><code class="language-sql">DELETE FROM table
+WHERE ...
+</code></pre>
+<p>Пример:</p>
+<pre><code class="language-sql">DELETE FROM reviews
+WHERE date >= '2019-01-01’
+</code></pre>
+<p><strong>Удаление всех строк</strong></p>
+<p>Структура запроса:</p>
+<pre><code class="language-sql">DELETE FROM table
+</code></pre>
+<p>Пример:</p>
+<pre><code class="language-sql">DELETE FROM reviews
+</code></pre>
+4:["$","div",null,{"className":"max-w-4xl mx-auto p-8","children":[["$","div",null,{"className":"mb-6","children":["$","$L10",null,{"href":"/","className":"text-blue-600 hover:underline","children":"← Назад на главную"}]}],["$","article",null,{"className":"prose prose-lg max-w-none","children":["$","div",null,{"dangerouslySetInnerHTML":{"__html":"$11"}}]}]]}]
