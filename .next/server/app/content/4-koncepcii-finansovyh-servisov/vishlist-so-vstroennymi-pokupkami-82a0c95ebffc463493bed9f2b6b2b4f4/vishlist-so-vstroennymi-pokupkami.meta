@@ -1,7 +1,0 @@
-{
-  "headers": {
-    "x-nextjs-stale-time": "300",
-    "x-nextjs-prerender": "1",
-    "x-next-cache-tags": "_N_T_/layout,_N_T_/content/layout,_N_T_/content/[...slug]/layout,_N_T_/content/[...slug]/page,_N_T_/content/4-koncepcii-finansovyh-servisov/vishlist-so-vstroennymi-pokupkami-82a0c95ebffc463493bed9f2b6b2b4f4/vishlist-so-vstroennymi-pokupkami/"
-  }
-}

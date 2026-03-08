@@ -1,8 +1,0 @@
-{
-  "/_not-found/page": "/_not-found",
-  "/favicon.ico/route": "/favicon.ico",
-  "/blog/page": "/blog",
-  "/page": "/",
-  "/blog/[slug]/page": "/blog/[slug]",
-  "/content/[...slug]/page": "/content/[...slug]"
-}

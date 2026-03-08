@@ -1,7 +1,0 @@
-{
-  "headers": {
-    "x-nextjs-stale-time": "300",
-    "x-nextjs-prerender": "1",
-    "x-next-cache-tags": "_N_T_/layout,_N_T_/content/layout,_N_T_/content/[...slug]/layout,_N_T_/content/[...slug]/page,_N_T_/content/2-specifikaciya-po-produktovoj-razrabotke/dizayn-produkta/karkas/sektsiya/modifikatory-82a066e5cba348649829f73c3010387d/structure-19dd3af305f147beabb1f4f42b676ae3/"
-  }
-}

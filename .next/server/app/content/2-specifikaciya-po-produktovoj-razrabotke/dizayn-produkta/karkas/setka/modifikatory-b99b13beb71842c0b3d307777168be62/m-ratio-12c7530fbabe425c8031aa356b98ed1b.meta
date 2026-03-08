@@ -1,7 +1,0 @@
-{
-  "headers": {
-    "x-nextjs-stale-time": "300",
-    "x-nextjs-prerender": "1",
-    "x-next-cache-tags": "_N_T_/layout,_N_T_/content/layout,_N_T_/content/[...slug]/layout,_N_T_/content/[...slug]/page,_N_T_/content/2-specifikaciya-po-produktovoj-razrabotke/dizayn-produkta/karkas/setka/modifikatory-b99b13beb71842c0b3d307777168be62/m-ratio-12c7530fbabe425c8031aa356b98ed1b/"
-  }
-}
