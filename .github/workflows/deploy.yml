@@ -7,7 +7,7 @@ on:
 
 env:
   # >>> ВАЖНО: новый бакет под кириллический домен
-  BUCKET: xn--b1apadobbw.xn--p1ai
+    BUCKET: koloskov-rf
   ENDPOINT: https://storage.yandexcloud.net
   AWS_DEFAULT_REGION: ru-central1
 
